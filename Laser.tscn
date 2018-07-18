@@ -29,4 +29,6 @@ modulate = Color( 0.598999, 1, 0.296875, 1 )
 texture = ExtResource( 2 )
 _sections_unfolded = [ "Visibility" ]
 
+[connection signal="body_entered" from="." to="." method="_on_Laser_body_entered"]
+
 

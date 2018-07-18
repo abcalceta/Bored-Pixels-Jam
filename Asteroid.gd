@@ -6,6 +6,8 @@ extends RigidBody2D
 var angle = deg2rad(rand_range(-45,45))
 var speed = 200
 var impulseDone = false
+var strength = 3
+
 func _ready():
 	position = Vector2(300,300)
 	# Called every time the node is added to the scene.
@@ -18,6 +20,20 @@ func _process(delta):
 	if not impulseDone:
 		apply_impulse(Vector2(0,1), direction*speed)
 		impulseDone = true
+		
+	
+		
 	pass
 	
 	#move_and_slide(direction * speed)
+	
+func hitLaser():
+	strength -= 1
+	if strength == 0:
+		queue_free()
+		
+		
+		
+		
+		
+		

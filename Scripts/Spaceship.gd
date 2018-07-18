@@ -25,7 +25,10 @@ func _process(delta):
 	if Input.is_action_pressed("ui_right"):
 		acceleration.x += 1
 	if Input.is_action_pressed("ui_select"):
-		$LaserSpawner.shootLaser()
+		$LaserSpawner.shootLaser(0)
+	if Input.is_action_just_pressed("ui_page_up"):
+		for x in range(0, 360, 10):
+			$LaserSpawner.shootLaser(x)
 		
 		
 	#print(WINDOW_SIZE, " ", $KinematicBody2D.position)
