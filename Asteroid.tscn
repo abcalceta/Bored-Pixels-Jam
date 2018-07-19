@@ -13,7 +13,7 @@ extents = Vector2( 31.7929, 32.119 )
 custom_solver_bias = 0.0
 extents = Vector2( 35.0045, 34.163 )
 
-[node name="Asteroid" type="RigidBody2D"]
+[node name="Asteroid" type="RigidBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 1
@@ -34,6 +34,9 @@ linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
+largeTex = ExtResource( 2 )
+mediumTex = ExtResource( 2 )
+smallTex = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 

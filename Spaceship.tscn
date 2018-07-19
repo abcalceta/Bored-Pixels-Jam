@@ -27,4 +27,13 @@ shape = SubResource( 1 )
 
 [node name="LaserSpawner" parent="." index="2" instance=ExtResource( 3 )]
 
+[node name="canShootTimer" type="Timer" parent="." index="3"]
+
+process_mode = 1
+wait_time = 0.3
+one_shot = true
+autostart = false
+
+[connection signal="timeout" from="canShootTimer" to="." method="_on_canShootTimer_timeout"]
+
 

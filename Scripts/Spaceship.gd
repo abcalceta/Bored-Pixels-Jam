@@ -9,6 +9,8 @@ var acceleration = Vector2(0,0)
 onready var WINDOW_SIZE = get_viewport().size
 onready var SPRITE_SIZE = Vector2(64,64)
 
+var canShoot = true
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -24,10 +26,12 @@ func _process(delta):
 		acceleration.x -= 1
 	if Input.is_action_pressed("ui_right"):
 		acceleration.x += 1
-	if Input.is_action_pressed("ui_select"):
+	if Input.is_action_pressed("ui_select") and canShoot:
+		canShoot = false
+		$canShootTimer.start()
 		$LaserSpawner.shootLaser(0)
 	if Input.is_action_just_pressed("ui_page_up"):
-		for x in range(0, 360, 10):
+		for x in range(0, 360, 36):
 			$LaserSpawner.shootLaser(x)
 		
 		
@@ -57,8 +61,5 @@ func _process(delta):
 	motion += acceleration
 	move_and_slide(motion*SPEED)
 	
-	
-	
-	
-	
-	
+func _on_canShootTimer_timeout():
+	canShoot = true
