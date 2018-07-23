@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hitShip.ogg-c5bade42db48e466496a3214f6c5d83b.oggstr"
+
+[deps]
+
+source_file="res://Assets/Sound Effects/hitShip.ogg"
+dest_files=[ "res://.import/hitShip.ogg-c5bade42db48e466496a3214f6c5d83b.oggstr" ]
+
+[params]
+
+loop=false
+loop_offset=0

@@ -1,19 +1,62 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Asteroid.gd" type="Script" id=1]
-[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Scripts/Asteroid.gd" type="Script" id=1]
+[ext_resource path="res://Assets/LargeAsteroid1.png" type="Texture" id=2]
+[ext_resource path="res://Assets/MediumAsteroid1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/SmallAsteroid1.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Sound Effects/hitShip.ogg" type="AudioStream" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="Gradient" id=1]
 
-custom_solver_bias = 0.0
-extents = Vector2( 31.7929, 32.119 )
+offsets = PoolRealArray( 0, 0.775281, 1 )
+colors = PoolColorArray( 0.910156, 0.94104, 1, 1, 0.710938, 0.810303, 1, 0.983146, 0.822876, 0.885962, 0.984375, 0 )
 
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="GradientTexture" id=2]
 
-custom_solver_bias = 0.0
-extents = Vector2( 35.0045, 34.163 )
+flags = 4
+gradient = SubResource( 1 )
+width = 2048
 
-[node name="Asteroid" type="RigidBody2D" index="0"]
+[sub_resource type="ParticlesMaterial" id=3]
+
+render_priority = 0
+trail_divisor = 1
+emission_shape = 0
+flag_align_y = false
+flag_rotate_y = false
+flag_disable_z = true
+spread = 45.0
+flatness = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.0
+angular_velocity = 100.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 0.0
+linear_accel_random = 0.0
+radial_accel = 0.0
+radial_accel_random = 1.0
+tangential_accel = 0.0
+tangential_accel_random = 0.0
+damping = 0.0
+damping_random = 0.0
+angle = 0.0
+angle_random = 0.0
+scale = 0.1
+scale_random = 0.5
+color_ramp = SubResource( 2 )
+hue_variation = 0.0
+hue_variation_random = 0.0
+anim_speed = 0.0
+anim_speed_random = 0.0
+anim_offset = 0.0
+anim_offset_random = 0.0
+anim_loop = false
+_sections_unfolded = [ "Angle", "Angular Velocity", "Animation", "Color", "Damping", "Gravity", "Initial Velocity", "Linear Accel", "Orbit Velocity", "Radial Accel", "Resource", "Scale", "Tangential Accel" ]
+
+[node name="Asteroid" type="RigidBody2D"]
 
 input_pickable = false
 collision_layer = 1
@@ -35,40 +78,82 @@ angular_velocity = 0.0
 angular_damp = -1.0
 script = ExtResource( 1 )
 largeTex = ExtResource( 2 )
-mediumTex = ExtResource( 2 )
-smallTex = ExtResource( 2 )
+mediumTex = ExtResource( 3 )
+smallTex = ExtResource( 4 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+[node name="Sprite" type="Sprite" parent="." index="0"]
 
-shape = SubResource( 1 )
-_sections_unfolded = [ "Visibility" ]
+modulate = Color( 2, 2, 2, 1 )
+texture = ExtResource( 3 )
+_sections_unfolded = [ "Material", "Transform", "Visibility" ]
 
-[node name="Area2D" type="Area2D" parent="." index="1"]
+[node name="Large" type="CollisionPolygon2D" parent="." index="1"]
 
-input_pickable = true
-gravity_vec = Vector2( 0, 1 )
-gravity = 98.0
-linear_damp = 0.1
-angular_damp = 1.0
-audio_bus_override = false
-audio_bus_name = "Master"
+build_mode = 0
+polygon = PoolVector2Array( -26.4688, -36.1666, -28.8298, -23.7176, -43.4252, -6.97578, -46.2155, 8.69282, -42.5666, 20.0686, 5.36597, 46.6838, 42.0009, 24.1468, 45.718, 15.9905, 43.1423, 5.47327, 45.2205, -1.60983, 46.7229, -23.9322, 40.0691, -32.5177, 21.3956, -35.7373, 14.0979, -47.1132, -7.79521, -47.7571 )
+disabled = true
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D" index="0"]
+[node name="Medium" type="CollisionPolygon2D" parent="." index="2"]
 
-shape = SubResource( 2 )
-_sections_unfolded = [ "Visibility" ]
+build_mode = 0
+polygon = PoolVector2Array( -25.6102, -7.83434, -30.3322, 2.25366, -32.625, 8.04893, -31.8347, 14.9173, -11.6587, 25.6492, 11.093, 29.0835, 19.2492, 22.8589, 29.5519, 20.9272, 25.4737, 11.9124, 32.3422, 2.4683, 27.4055, -4.40012, 27.4055, -11.0539, 18.8882, -18.9955, 10.088, -21.3565, 4.00989, -28.4396, -8.65377, -24.3615, -14.1661, -18.7809, -20.3906, -10.1953 )
+disabled = true
 
-[node name="Sprite" type="Sprite" parent="." index="2"]
+[node name="Small" type="CollisionPolygon2D" parent="." index="3"]
 
-modulate = Color( 1.3, 1.3, 1, 1 )
-texture = ExtResource( 2 )
-_sections_unfolded = [ "Transform", "Visibility" ]
+build_mode = 0
+polygon = PoolVector2Array( -12.5173, -10.41, 5.29773, -12.9857, 11.9515, -8.47825, 22.8981, -5.47332, 22.6834, 5.68788, 15.1711, 13.2002, 1.64888, 13.6295, -11.0148, 8.90746, -23.2492, 8.26354, -24.7516, 0.321922, -14.6636, -2.46838 )
+disabled = true
 
-[node name="Timer" type="Timer" parent="." index="3"]
+[node name="Timer" type="Timer" parent="." index="4"]
 
 process_mode = 1
 wait_time = 1.0
 one_shot = false
 autostart = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." index="5"]
+
+stream = ExtResource( 5 )
+volume_db = 5.0
+pitch_scale = 1.0
+autoplay = false
+max_distance = 2000.0
+attenuation = 1.0
+bus = "Master"
+area_mask = 1
+
+[node name="Particles2D" type="Particles2D" parent="." index="6"]
+
+emitting = false
+amount = 8
+lifetime = 1.0
+one_shot = true
+preprocess = 0.0
+speed_scale = 1.0
+explosiveness = 1.0
+randomness = 0.0
+fixed_fps = 0
+fract_delta = true
+visibility_rect = Rect2( -100, -100, 200, 200 )
+local_coords = true
+draw_order = 0
+process_material = SubResource( 3 )
+texture = ExtResource( 3 )
+normal_map = null
+h_frames = 1
+v_frames = 1
+_sections_unfolded = [ "Drawing", "Process Material", "Textures", "Time" ]
+
+[node name="dieTimer" type="Timer" parent="." index="7"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_AudioStreamPlayer2D_finished"]
+
+[connection signal="timeout" from="dieTimer" to="." method="_on_dieTimer_timeout"]
 
 
